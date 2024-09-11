@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>City Hospital Pharmacy</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.5;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+        ul {
+            list-style: none;
+        }
+
+        /* Header styles */
+        header {
+            background-color: #fff;
+            border-bottom: 1px solid #e5e5e5;
+            padding: 1rem 0;
+        }
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .logo img {
+            width: 40px;
+            height: 40px;
+        }
+        .logo h1 {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        nav ul {
+            display: flex;
+            gap: 1rem;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        .cart-icon {
+            background: none;
+            border: 1px solid #e5e5e5;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        /* Main content styles */
+        main {
+            padding: 2rem 0;
+        }
+        .search-bar {
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            position: relative;
+        }
+        .search-bar input {
+            width: 100%;
+            padding: 0.5rem 1rem 0.5rem 2.5rem;
+            border: 1px solid #e5e5e5;
+            border-radius: 0.25rem;
+            font-size: 1rem;
+        }
+        .search-bar::before {
+            content: "🔍";
+            position: absolute;
+            left: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        /* Category and Featured Medication styles */
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        .category-grid, .featured-grid {
+            display: grid;
+            gap: 1rem;
+        }
+        .category-grid {
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        }
+        .featured-grid {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+        .card {
+            border: 1px solid #e5e5e5;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            transition: box-shadow 0.3s ease;
+        }
+        .card:hover {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .card-content {
+            padding: 1rem;
+        }
+        .card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+        .card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+        .card p {
+            font-size: 0.875rem;
+            color: #666;
+        }
+        .card button {
+            display: block;
+            width: 100%;
+            padding: 0.5rem;
+            background-color: #3b82f6;
+            color: white;
+            border: none;
+            border-radius: 0.25rem;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .card button:hover {
+            background-color: #2563eb;
+        }
+
+        /* Footer styles */
+        footer {
+            background-color: #f3f4f6;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+        .footer-section h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+        }
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+        .footer-section ul li a:hover {
+            text-decoration: underline;
+        }
+        .newsletter form {
+            display: flex;
+        }
+        .newsletter input {
+            flex-grow: 1;
+            padding: 0.5rem;
+            border: 1px solid #e5e5e5;
+            border-right: none;
+            border-top-left-radius: 0.25rem;
+            border-bottom-left-radius: 0.25rem;
+        }
+        .newsletter button {
+            padding: 0.5rem 1rem;
+            background-color: #3b82f6;
+            color: white;
+            border: none;
+            border-top-right-radius: 0.25rem;
+            border-bottom-right-radius: 0.25rem;
+            cursor: pointer;
+        }
+        .newsletter button:hover {
+            background-color: #2563eb;
+        }
+        .copyright {
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 0.875rem;
+            color: #666;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .header-content, nav ul {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            nav ul {
+                margin-top: 1rem;
+            }
+            .cart-icon {
+                margin-top: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="logo.jpg" alt="Hospital Logo">
+                    <h1>City Hospital Pharmacy</h1>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Prescriptions</a></li>
+                        <li><a href="#">Delivery</a></li>
+                        <li><a href="#">Account</a></li>
+                    </ul>
+                </nav>
+                <button class="cart-icon">🛒</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="search-bar">
+            <input type="text" placeholder="Search for medicines...">
+        </div>
+
+        <section>
+            <h2 class="section-title">Medicine Categories</h2>
+            <div class="category-grid">
+                <div class="card">
+                    <img src="pain relief.jpg" alt="Pain Relief">
+                    <div class="card-content">
+                        <h3>Pain Relief</h3>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="antibiotics.jpg" alt="Antibiotics">
+                    <div class="card-content">
+                        <h3>Antibiotics</h3>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="vita_new.jpeg" alt="Vitamins">
+                    <div class="card-content">
+                        <h3>Vitamins</h3>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="heart_wala.jpg" alt="Heart Health">
+                    <div class="card-content">
+                        <h3>Heart Health</h3>
+                    </div>
+                </div>
+                <!-- Add more categories as needed -->
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-title">Featured Medications</h2>
+            <div class="featured-grid">
+                <div class="card">
+                    <img src="aspirin.jpg" alt="Aspirin">
+                    <div class="card-content">
+                        <h3>Aspirin</h3>
+                        <p>Common uses and dosage information</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        <button>Add to Cart</button>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="amoxilin.jpg" alt="Amoxicillin">
+                    <div class="card-content">
+                        <h3>Amoxicillin</h3>
+                        <p>Common uses and dosage information</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        <button>Add to Cart</button>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="lisnopril.jpeg" alt="Lisinopril">
+                    <div class="card-content">
+                        <h3>Lisinopril</h3>
+                        <p>Common uses and dosage information</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        <button>Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Information</h3>
+                    <ul>
+                        <li>📞 (123) 456-7890</li>
+                        <li>✉️ pharmacy@cityhospital.com</li>
+                    </ul>
+                </div>
+                <div class="footer-section newsletter">
+                    <h3>Newsletter</h3>
+                    <p>Stay updated with our latest offers and health tips.</p>
+                    <form>
+                        <input type="email" placeholder="Your email">
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="copyright">
+                © 2023 City Hospital Pharmacy. All rights reserved.
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
